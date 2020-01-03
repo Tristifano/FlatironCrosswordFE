@@ -1,0 +1,193 @@
+header {
+   text-align: center
+}
+
+h2 {
+   margin-left: 1rem;
+}
+
+#body-container {
+   display: flex
+}
+
+#hint-container {
+   display: flex;
+   width: 550px;
+   background-color: white;
+   justify-content: center;
+   padding:1rem;
+}
+
+#timer-container {
+   background: red;
+}
+
+#across-hint-container {
+   background-color: white;
+   /* width: 50%; */
+}
+
+#down-hint-container {
+   background-color: white;
+   /* width: */
+}
+
+#across-hints {
+   border-top: 100%;
+   border-top-style: solid;
+   border-top-color: black;
+   border-bottom: 100%;
+   border-bottom-style: solid;
+   border-bottom-color: black;
+   height: 700px;
+   width: 95%;
+   background-color: white;
+   overflow: scroll;
+   
+}
+
+#toolbar {
+   display: grid;
+   grid-template-columns: auto auto auto;
+   justify-items: center;
+   height: 4rem;
+   background-color: white;
+   border-top: 85%;
+   border-top-style: solid;
+   border-top-color: black;
+   border-bottom: 85%;
+   border-bottom-style: solid;
+   border-bottom-color: black;
+}
+
+#timer-div {
+   background-color: white;
+   font-size: 2rem;
+   text-align: center;
+   line-height: 4rem;
+
+}
+
+#edit-user-body {
+   text-align: center;
+}
+
+#user-submit {
+   text-align: center;
+}
+
+#reset-button {
+   border:none;
+   width: 12rem;
+   background: none;
+}
+
+#reset-button:focus {
+   outline: none;
+}
+
+#settings-button {
+   border: none;
+   width: 12rem;
+   background: none;
+   
+}
+
+#settings-button:hover {
+   outline: none;
+}
+
+#down-hints {
+   height:700px;
+   border-top: 100%;
+   border-top-style: solid;
+   border-top-color: black;
+   border-bottom: 100%;
+   border-bottom-style: solid;
+   border-bottom-color: black;
+   width: 95%;
+  background-color: white;
+  overflow: scroll;
+}
+
+
+#crossword-container {
+   align-content: center; 
+   display: inline-grid;
+   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+   background-color: black;
+   padding: 10px;
+   height: 750px;
+   width: 800px;
+   margin-top: 2rem;
+   margin-left:5rem;
+}
+
+.tool-item {
+   width:25%;
+   margin-left: 1rem;
+   margin-right: 1rem;
+}
+
+.outer-clue {
+   display: flex;
+   width: 95%;
+   margin-right: 0.5rem;
+   margin-top: 0.5rem;
+   margin-bottom:0.5rem;
+   border-radius: 0.15rem;
+   background-color: white;
+}
+
+.num-div {
+   background-color: transparent;
+   width: 2rem;
+   border-radius: 0.15rem;
+   margin-right: 0.5rem;
+   text-align: center;
+}
+
+.clue-div {
+   background-color: transparent;
+   font-size: 1.3em;
+   width: 13rem;
+}
+
+
+.crossword-cell {
+   position: relative;
+   text-align: center;
+   height: 3rem;
+   width: 3rem;
+   border: 1px solid black;
+}
+
+
+.cell-input:focus {
+   outline: none
+}
+
+.cell-number {
+   position: absolute;
+   top: 0;
+   text-align: left;
+   height: 0.9rem;
+   width: 3rem;
+   background-color: transparent
+}
+
+.cell-input {
+   line-height: 2.65rem;
+   height: 1.8rem;
+   width: 95%;
+   background: transparent;
+   text-align: center;
+   font-size: 1.7rem;
+   font-weight: bold;
+   text-transform: uppercase;
+   border: 0;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   caret-color: transparent;
+}
