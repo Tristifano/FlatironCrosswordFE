@@ -123,6 +123,11 @@ h2 {
    margin-left:5rem;
 }
 
+#game-over-modal-body {
+   text-align: center;
+   font-weight: bold;
+}
+
 .tool-item {
    width:25%;
    margin-left: 1rem;

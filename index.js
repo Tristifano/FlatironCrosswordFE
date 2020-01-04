@@ -1,6 +1,7 @@
 let orientation = true
 let puzzle = {}
 let timer;
+let currentUser
 let userName;
 
 
@@ -21,8 +22,11 @@ const crosswordFetch = () => {
         generateClues()
         addCellHighlightListeners()
         addClueNumbers()
-        configureTimer()
-
+        addNewUserListener()
+        addStartListeners()
+        addEditListener()
+        gameOverBtnListener()
+        newUser()
     })
 }
 
@@ -115,16 +119,24 @@ const addCellHighlightListeners = () => {
 
 const addNewUserListener = () => {
     let submitBtn = document.getElementById("new-user-submit")
-    submitBtn.addEventListener('mouseup', ()=> {
+    submitBtn.addEventListener('click', ()=> {
         let textInput = document.getElementById('input-user-name')
         userName = textInput.value
-        $('user-submit').modal('hide')
+        $('#user-submit').modal('hide')
         userPost()
     })
 }
 
 const showStartModal = () => {
-    $('start').modal()
+    $('#start').modal()
+}
+
+const addStartListeners = () => {
+    let startBtn = document.getElementById('start-game')
+    startBtn.addEventListener('click', () => {
+        $('#start').modal('hide')
+        configureTimer()
+    })
 }
 
 const userPost = () => {
@@ -140,7 +152,8 @@ const userPost = () => {
     })
     .then(r=>r.json())
     .then((user) => {
-        $('user-submit').modal('hide')
+        currentUser = user
+        $('#user-submit').modal('hide')
         showStartModal()
     })
 }
@@ -170,6 +183,34 @@ const addToolbarButtonListener = (reset) => {
 
 const newUser = () => {
     $("#user-submit").modal()
+}
+
+const userPatch = (newName) => {
+    console.log(newName)
+    fetch(`http://localhost:3000/users/${currentUser.id}`, {
+        method: 'PATCH',
+        headers: {
+            'content-type':'application/json',
+            'accept':'application/json'
+        },
+        body: JSON.stringify({
+            name: newName
+        })
+    })
+    .then(r => r.json())
+    .then((player) => {
+        console.log(player)
+        $('#user-edit-modal').modal('hide')
+    })
+}
+
+const addEditListener = () => {
+    let editBtn = document.getElementById('edit-save'),
+        editInput = document.getElementById('edit-user-name')
+    editBtn.addEventListener('click', () => {
+        console.log(editInput.value)
+       userPatch(editInput.value)
+    })
 }
 
 const highlight = (index) => {
@@ -391,8 +432,29 @@ const checkGame = () => {
     }
     
     if (gameOver === true) {
-        alert('You Win')
+        gameOverModal()
+        clearInterval(timer)
     }
+}
+
+const gameOverBtnListener = () => {
+    let gameOverBtn = document.getElementById('game-over-btn')
+    gameOverBtn.addEventListener('click', () => {
+        $('#game-over-modal').modal('hide')
+    })
+}
+const gameOverModal = () => {
+    let goModalBody = document.getElementById('game-over-modal-body'),
+        time = document.getElementById('timer-div').innerText.split(":")
+
+    goModalBody.innerHTML = `
+    <p>Congratulations, ${currentUser.name}!</p>
+    <p>You've Completed The Puzzle In ${time[0]} Minutes And ${time[1]} Seconds </p>`
+        
+        
+
+    $('#game-over-modal').modal()
+
 }
 
 const resetGame = () => {
